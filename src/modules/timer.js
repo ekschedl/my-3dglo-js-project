@@ -1,5 +1,4 @@
 const timer = (deadline) => {
-  console.log(deadline);
   const timerHours = document.getElementById("timer-hours");
   const timerMinutes = document.getElementById("timer-minutes");
   const timerSeconds = document.getElementById("timer-seconds");
@@ -8,17 +7,16 @@ const timer = (deadline) => {
     let dateStop = new Date(deadline).getTime();
     let dateNow = new Date().getTime();
     let timeRemaining = (dateStop - dateNow) / 1000;
-    //let days = Math.floor(timeRemaining / 60 / 60 / 24);
-    // let hours = Math.floor((timeRemaining / 60 / 60) % 24);
-    let hours = Math.floor(timeRemaining / 60 / 60);
-    let minutes = Math.floor((timeRemaining / 60) % 60);
+    let hours = Math.floor(timeRemaining / 3600);
+    let minutes = Math.floor((timeRemaining % 3600) / 60);
     let seconds = Math.floor(timeRemaining % 60);
 
+    // Добавляем нули перед однозначными значениями
+    hours = String(hours).padStart(2, "0");
+    minutes = String(minutes).padStart(2, "0");
+    seconds = String(seconds).padStart(2, "0");
+
     return {
-      // hours: hours,
-      // minutes: minutes,
-      // seconds: seconds,
-      //можно записать атакЮ
       timeRemaining,
       hours,
       minutes,
@@ -28,17 +26,24 @@ const timer = (deadline) => {
 
   const updateClock = () => {
     let getTime = getTimerRemaining();
-    // console.log(getTime);
     timerHours.textContent = getTime.hours;
     timerMinutes.textContent = getTime.minutes;
     timerSeconds.textContent = getTime.seconds;
-    if (getTime.timeRemaining > 0) {
-      setTimeout(updateClock, 1000);
-    }
   };
-  updateClock();
 
-  //setInterval(countTimer, 1000, "20 may 2024");
+  updateClock(); // Вызываем один раз для обновления времени перед запуском setInterval
+
+  let timerInterval = setInterval(() => {
+    let getTime = getTimerRemaining();
+    if (getTime.timeRemaining <= 0) {
+      clearInterval(timerInterval); // Остановить интервал, если время истекло
+      timerHours.textContent = "00";
+      timerMinutes.textContent = "00";
+      timerSeconds.textContent = "00";
+    } else {
+      updateClock(); // Обновить время
+    }
+  }, 1000); // Вызываем каждую секунду
 };
 
 export default timer;
