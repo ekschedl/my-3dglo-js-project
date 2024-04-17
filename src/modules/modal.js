@@ -7,12 +7,24 @@ const modal = () => {
 
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      modal.style.display = "block";
+      modal.classList.toggle("active");
+      if (modal.classList.contains("active")) {
+        modal.style.display = "block";
+        modal.style.backgroundColor = "rgba(1, 64, 0, 0.5)";
+        modal.style.transition = "opacity 0.3s ease";
+      } else {
+        modal.style.backgroundColor = "transparent";
+        modal.style.transition = "";
+      }
     });
   });
 
   closeBtn.addEventListener("click", () => {
     modal.style.display = "none";
+    modal.classList.remove("active");
+    modal.style.backgroundColor = "transparent";
+    modal.style.transition = "";
   });
 };
+
 export default modal;
