@@ -8,13 +8,17 @@ const modal = () => {
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       modal.classList.toggle("active");
-      if (modal.classList.contains("active")) {
-        modal.style.display = "block";
-        modal.style.backgroundColor = "rgba(1, 64, 0, 0.5)";
-        modal.style.transition = "opacity 0.3s ease";
-      } else {
-        modal.style.backgroundColor = "transparent";
-        modal.style.transition = "";
+
+      // Проверяем ширину экрана
+      if (window.innerWidth >= 768) {
+        if (modal.classList.contains("active")) {
+          modal.style.display = "block";
+          modal.style.backgroundColor = "rgba(1, 64, 0, 0.5)";
+          modal.style.transition = "opacity 0.3s ease";
+        } else {
+          modal.style.backgroundColor = "transparent";
+          modal.style.transition = "";
+        }
       }
     });
   });
@@ -25,6 +29,12 @@ const modal = () => {
     modal.style.backgroundColor = "transparent";
     modal.style.transition = "";
   });
+
+  // Проверяем ширину экрана при загрузке страницы
+  if (window.innerWidth < 768) {
+    // Удаляем анимацию
+    modal.style.transition = "";
+  }
 };
 
 export default modal;
