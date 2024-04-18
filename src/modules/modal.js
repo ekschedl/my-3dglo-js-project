@@ -6,12 +6,18 @@ const modal = () => {
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       modal.style.display = "block";
-      fadeIn(modal);
+      if (window.innerWidth >= 768) {
+        fadeIn(modal);
+      }
     });
   });
 
   closeBtn.addEventListener("click", () => {
-    fadeOut(modal);
+    if (window.innerWidth >= 768) {
+      fadeOut(modal);
+    } else {
+      modal.style.display = "none";
+    }
   });
 
   document.querySelector(".popup").classList.add("active");
@@ -20,7 +26,7 @@ const modal = () => {
 const fadeIn = (element) => {
   let opacity = 0;
   const fadeInAnimation = () => {
-    opacity += 0.05; // Увеличиваем прозрачность на 0.05 за каждый кадр
+    opacity += 0.05;
     element.style.opacity = opacity;
     if (opacity < 1) {
       requestAnimationFrame(fadeInAnimation);
@@ -32,7 +38,7 @@ const fadeIn = (element) => {
 const fadeOut = (element) => {
   let opacity = 1;
   const fadeOutAnimation = () => {
-    opacity -= 0.05; // Уменьшаем прозрачность на 0.05 за каждый кадр
+    opacity -= 0.05;
     element.style.opacity = opacity;
     if (opacity > 0) {
       requestAnimationFrame(fadeOutAnimation);
