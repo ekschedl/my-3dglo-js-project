@@ -1,5 +1,9 @@
-import oneModule from "./modules/one";
-import twoModule from "./modules/two";
+import timer from "./modules/timer";
+import menu from "./modules/menu";
+import modal from "./modules/modal";
+import calc from "./modules/calc";
 
-oneModule();
-twoModule();
+timer("23 april 2024");
+menu();
+modal();
+calc();
