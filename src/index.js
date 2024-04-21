@@ -4,7 +4,7 @@ import modal from "./modules/modal";
 import calc from "./modules/calc";
 import form from "./modules/form";
 
-timer("23 april 2024");
+timer("21 april 2024, 21:36:00");
 menu();
 modal();
 calc();

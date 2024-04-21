@@ -1,50 +1,52 @@
 "use strict";
+
 const form = () => {
   const inputs = document.querySelectorAll("input");
+
   // Функция для валидации кириллицы, дефиса и пробела
-  function checkCyrillic(input) {
+  const checkCyrillic = (input) => {
     return /^[\u0400-\u04FF\- ]*$/i.test(input);
-  }
+  };
 
   // Функция для валидации латиницы, цифр и спецсимволов
-  function checkLatin(input) {
+  const checkLatin = (input) => {
     return /^[a-zA-Z0-9@_.!~*' \-]*$/.test(input);
-  }
+  };
 
   // Функция для валидации номера телефона
-  function checkPhone(input) {
+  const checkPhone = (input) => {
     return /^[0-9()+\-]*$/.test(input);
-  }
+  };
 
   // Для каждого поля ввода привязываем обработчик события input
   inputs.forEach((input) => {
-    input.addEventListener("input", function () {
+    input.addEventListener("input", (event) => {
       // Получаем значение поля ввода
-      const value = this.value;
+      const value = event.target.value;
       // Проверяем тип поля и вызываем соответствующую функцию валидации
-      if (this.type === "text") {
+      if (event.target.type === "text") {
         if (!checkCyrillic(value)) {
-          this.setCustomValidity(
-            "Пожалуйста, используйте nmтолько кириллицу, дефис и пробел"
+          event.target.setCustomValidity(
+            "Пожалуйста, используйте только кириллицу, дефис и пробел"
           );
         } else {
-          this.setCustomValidity("");
+          event.target.setCustomValidity("");
         }
-      } else if (this.type === "email") {
+      } else if (event.target.type === "email") {
         if (!checkLatin(value)) {
-          this.setCustomValidity(
-            "Пожалуйста, введите корректный email адрес (в любом регистре, цифры и спецсимволы:  @  -  _  . ! ~ * ')"
+          event.target.setCustomValidity(
+            "Пожалуйста, введите корректный email адрес (в любом регистре, цифры и спецсимволы: @ - _ . ! ~ * ')"
           );
         } else {
-          this.setCustomValidity("");
+          event.target.setCustomValidity("");
         }
-      } else if (this.type === "tel") {
+      } else if (event.target.type === "tel") {
         if (!checkPhone(value)) {
-          this.setCustomValidity(
+          event.target.setCustomValidity(
             "Пожалуйста, используйте только цифры, скобки и дефис"
           );
         } else {
-          this.setCustomValidity("");
+          event.target.setCustomValidity("");
         }
       }
     });
