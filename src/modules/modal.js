@@ -20,7 +20,16 @@ const modal = () => {
     }
   });
 
-  document.querySelector(".popup").classList.add("active");
+  modal.addEventListener("click", (e) => {
+    if (
+      !e.target.closest(".popup-content") ||
+      e.target.classList.contains("popup-close")
+    ) {
+      modal.style.display = "none";
+    }
+  });
+
+  // document.querySelector(".popup").classList.add("active");
 };
 
 const fadeIn = (element) => {
