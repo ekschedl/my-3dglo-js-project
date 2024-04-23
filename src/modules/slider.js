@@ -3,9 +3,21 @@ const slider = () => {
   const sliderBlock = document.querySelector(".portfolio-content");
   const slides = document.querySelectorAll(".portfolio-item");
   const dots = document.querySelectorAll(".dot");
+  const dotsContainer = document.querySelector(".portfolio-dots");
+  console.log(dotsContainer);
   const timeInterval = 2000;
   let currentSlide = 0;
   let interval;
+
+  // Добавляем точки в контейнер
+  slides.forEach(() => {
+    const list = document.createElement("li");
+    list.classList.add("dot");
+    dotsContainer.appendChild(list);
+  });
+
+  sliderBlock.appendChild(dotsContainer); // Добавляем контейнер с точками в блок слайдера
+
   const prevSlide = (elems, index, strClass) => {
     elems[index].classList.remove(strClass);
   };
