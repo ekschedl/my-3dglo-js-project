@@ -2,9 +2,7 @@
 const slider = () => {
   const sliderBlock = document.querySelector(".portfolio-content");
   const slides = document.querySelectorAll(".portfolio-item");
-  const dots = document.querySelectorAll(".dot");
   const dotsContainer = document.querySelector(".portfolio-dots");
-  console.log(dotsContainer);
   const timeInterval = 2000;
   let currentSlide = 0;
   let interval;
@@ -18,12 +16,26 @@ const slider = () => {
 
   sliderBlock.appendChild(dotsContainer); // Добавляем контейнер с точками в блок слайдера
 
+  const dots = document.querySelectorAll(".dot"); // Обновляем список точек
+
   const prevSlide = (elems, index, strClass) => {
     elems[index].classList.remove(strClass);
   };
+
   const nextSlide = (elems, index, strClass) => {
     elems[index].classList.add(strClass);
   };
+
+  const activateDot = (index) => {
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.classList.add("dot-active");
+      } else {
+        dot.classList.remove("dot-active");
+      }
+    });
+  };
+
   const autoSlide = () => {
     prevSlide(slides, currentSlide, "portfolio-item-active");
     prevSlide(dots, currentSlide, "dot-active");
@@ -32,15 +44,19 @@ const slider = () => {
     if (currentSlide >= slides.length) {
       currentSlide = 0;
     }
+
     nextSlide(slides, currentSlide, "portfolio-item-active");
-    nextSlide(dots, currentSlide, "dot-active");
+    activateDot(currentSlide); // Активируем соответствующую точку
   };
-  const startSlide = (timer = 1500) => {
+
+  const startSlide = () => {
     interval = setInterval(autoSlide, 2000);
   };
+
   const stopSlide = () => {
     clearInterval(interval);
   };
+
   sliderBlock.addEventListener("click", (e) => {
     e.preventDefault();
     if (!e.target.matches(".dot, .portfolio-btn")) {
@@ -67,7 +83,7 @@ const slider = () => {
     }
 
     nextSlide(slides, currentSlide, "portfolio-item-active");
-    nextSlide(dots, currentSlide, "dot-active");
+    activateDot(currentSlide); // Активируем соответствующую точку
   });
 
   sliderBlock.addEventListener(
@@ -83,11 +99,13 @@ const slider = () => {
     "mouseleave",
     (e) => {
       if (e.target.matches(".dot, .portfolio-btn")) {
-        startSlide(timeInterval);
+        startSlide();
       }
     },
     true
   );
-  startSlide(timeInterval);
+
+  startSlide();
 };
+
 export default slider;
