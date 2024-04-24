@@ -7,13 +7,6 @@ const calc = (price = 100) => {
   const calcDay = document.querySelector(".calc-day");
   const total = document.getElementById("total");
 
-  console.log(price);
-  console.log(calcType);
-  console.log(calcSquare);
-  console.log(calcCount);
-  console.log(calcDay);
-  console.log(total);
-
   calcBlock.addEventListener("input", (event) => {
     const target = event.target;
     if (
@@ -22,15 +15,12 @@ const calc = (price = 100) => {
       target.classList.contains("calc-day")
     ) {
       target.value = target.value.replace(/\D+/g, ""); // Заменяем все нецифровые символы
-      console.log(target.value);
     }
   });
 
   const countCalc = () => {
-    console.log(calc);
     const calcTypeValue = calcType.options[calcType.selectedIndex].value;
     const calcSquareValue = calcSquare.value;
-    // console.log(calcType.options[calcType.selectedIndex].value);
     let totalValue = 0;
     let calcCountValue = 1;
     let calcDayValue = 1;
@@ -52,12 +42,9 @@ const calc = (price = 100) => {
     }
 
     total.textContent = totalValue;
-    calcSquare;
   };
 
   calcBlock.addEventListener("input", (e) => {
-    // countCalc();
-    console.log(e.target);
     if (
       e.target === calcType ||
       e.target === calcSquare ||
