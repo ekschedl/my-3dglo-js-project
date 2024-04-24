@@ -11,7 +11,7 @@ import swiper from "./modules/swiper";
 timer("21 april 2024, 21:36:00");
 menu();
 modal();
-calc();
+calc(100);
 form();
 tabs();
 slider();
