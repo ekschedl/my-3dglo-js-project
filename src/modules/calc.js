@@ -41,7 +41,7 @@ const calc = (price = 100) => {
       totalValue = 0;
     }
 
-    total.textContent = totalValue;
+    total.textContent = totalValue.toFixed(2);
   };
 
   calcBlock.addEventListener("input", (e) => {
