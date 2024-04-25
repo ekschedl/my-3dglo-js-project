@@ -1,4 +1,6 @@
 "use strict";
+import { animate } from "./helpers";
+
 const calc = (price = 100) => {
   const calcBlock = document.querySelector(".calc-block");
   const calcType = document.querySelector(".calc-type");
@@ -41,7 +43,16 @@ const calc = (price = 100) => {
       totalValue = 0;
     }
 
-    total.textContent = totalValue.toFixed(2);
+    animate({
+      // Вызываем функцию animate для анимации изменения total
+      duration: 500, // Продолжительность анимации в миллисекундах
+      timing(timeFraction) {
+        return timeFraction; // Линейная функция изменения состояния анимации
+      },
+      draw(progress) {
+        total.textContent = (totalValue * progress).toFixed(2); // Обновляем значение total на каждом шаге анимации
+      },
+    });
   };
 
   calcBlock.addEventListener("input", (e) => {

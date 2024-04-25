@@ -1,4 +1,4 @@
-const animate = () => {
+const animate1 = () => {
   const fadeIn = (element) => {
     let opacity = 0;
     const fadeInAnimation = () => {
@@ -26,4 +26,24 @@ const animate = () => {
   };
   return { fadeIn, fadeOut }; // Возвращаем объект с функциями fadeIn и fadeOut
 };
-export { animate };
+const animate = (options) => {
+  const { duration, timing, draw } = options;
+  const start = performance.now();
+
+  const animateFrame = (time) => {
+    let timeFraction = (time - start) / duration;
+    if (timeFraction > 1) timeFraction = 1;
+
+    let progress = timing(timeFraction);
+
+    draw(progress);
+
+    if (timeFraction < 1) {
+      requestAnimationFrame(animateFrame);
+    }
+  };
+
+  requestAnimationFrame(animateFrame);
+};
+
+export { animate1, animate };
