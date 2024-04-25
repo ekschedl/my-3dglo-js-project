@@ -52,6 +52,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/modules/helpers.js":
+/*!********************************!*\
+  !*** ./src/modules/helpers.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   animate: () => (/* binding */ animate)\n/* harmony export */ });\nconst animate = () => {\n  const fadeIn = (element) => {\n    let opacity = 0;\n    const fadeInAnimation = () => {\n      opacity += 0.05;\n      element.style.opacity = opacity;\n      if (opacity < 1) {\n        requestAnimationFrame(fadeInAnimation);\n      }\n    };\n    requestAnimationFrame(fadeInAnimation);\n  };\n\n  const fadeOut = (element) => {\n    let opacity = 1;\n    const fadeOutAnimation = () => {\n      opacity -= 0.05;\n      element.style.opacity = opacity;\n      if (opacity > 0) {\n        requestAnimationFrame(fadeOutAnimation);\n      } else {\n        element.style.display = \"none\";\n      }\n    };\n    requestAnimationFrame(fadeOutAnimation);\n  };\n  return { fadeIn, fadeOut }; // Возвращаем объект с функциями fadeIn и fadeOut\n};\n\n\n\n//# sourceURL=webpack://my-3dglo-js-project/./src/modules/helpers.js?");
+
+/***/ }),
+
 /***/ "./src/modules/menu.js":
 /*!*****************************!*\
   !*** ./src/modules/menu.js ***!
@@ -70,7 +81,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst modal = () => {\n  const buttons = document.querySelectorAll(\".popup-btn\");\n  const modal = document.querySelector(\".popup\");\n  const closeBtn = modal.querySelector(\".popup-close\");\n\n  buttons.forEach((btn) => {\n    btn.addEventListener(\"click\", () => {\n      modal.style.display = \"block\";\n      if (window.innerWidth >= 768) {\n        fadeIn(modal);\n      }\n    });\n  });\n\n  closeBtn.addEventListener(\"click\", () => {\n    if (window.innerWidth >= 768) {\n      fadeOut(modal);\n    } else {\n      modal.style.display = \"none\";\n    }\n  });\n\n  modal.addEventListener(\"click\", (e) => {\n    if (\n      !e.target.closest(\".popup-content\") ||\n      e.target.classList.contains(\"popup-close\")\n    ) {\n      modal.style.display = \"none\";\n    }\n  });\n\n  // document.querySelector(\".popup\").classList.add(\"active\");\n};\n\nconst fadeIn = (element) => {\n  let opacity = 0;\n  const fadeInAnimation = () => {\n    opacity += 0.05;\n    element.style.opacity = opacity;\n    if (opacity < 1) {\n      requestAnimationFrame(fadeInAnimation);\n    }\n  };\n  requestAnimationFrame(fadeInAnimation);\n};\n\nconst fadeOut = (element) => {\n  let opacity = 1;\n  const fadeOutAnimation = () => {\n    opacity -= 0.05;\n    element.style.opacity = opacity;\n    if (opacity > 0) {\n      requestAnimationFrame(fadeOutAnimation);\n    } else {\n      element.style.display = \"none\";\n    }\n  };\n  requestAnimationFrame(fadeOutAnimation);\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modal);\n\n\n//# sourceURL=webpack://my-3dglo-js-project/./src/modules/modal.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers */ \"./src/modules/helpers.js\");\n\n\nconst modal = () => {\n  const buttons = document.querySelectorAll(\".popup-btn\");\n  const modal = document.querySelector(\".popup\");\n  const closeBtn = modal.querySelector(\".popup-close\");\n\n  buttons.forEach((btn) => {\n    btn.addEventListener(\"click\", () => {\n      modal.style.display = \"block\";\n      if (window.innerWidth >= 768) {\n        (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.animate)().fadeIn(modal);\n      }\n    });\n  });\n\n  closeBtn.addEventListener(\"click\", () => {\n    if (window.innerWidth >= 768) {\n      (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.animate)().fadeOut(modal);\n    } else {\n      modal.style.display = \"none\";\n    }\n  });\n\n  modal.addEventListener(\"click\", (e) => {\n    if (\n      !e.target.closest(\".popup-content\") ||\n      e.target.classList.contains(\"popup-close\")\n    ) {\n      modal.style.display = \"none\";\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modal);\n\n\n//# sourceURL=webpack://my-3dglo-js-project/./src/modules/modal.js?");
 
 /***/ }),
 
