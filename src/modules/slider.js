@@ -7,12 +7,19 @@ const slider = () => {
   let currentSlide = 0;
   let interval;
 
-  // Добавляем точки в контейнер
-  slides.forEach(() => {
-    const list = document.createElement("li");
-    list.classList.add("dot");
-    dotsContainer.appendChild(list);
-  });
+  // Функция для создания точек и добавления класса активности первой точке
+  const createDots = () => {
+    slides.forEach((slide, index) => {
+      const dot = document.createElement("li");
+      dot.classList.add("dot");
+      dotsContainer.appendChild(dot);
+      if (index === 0) {
+        dot.classList.add("dot-active"); // Добавляем класс активности первой точке
+      }
+    });
+  };
+
+  createDots(); // Вызываем функцию для создания точек
 
   sliderBlock.appendChild(dotsContainer); // Добавляем контейнер с точками в блок слайдера
 
