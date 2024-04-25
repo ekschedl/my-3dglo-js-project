@@ -1,4 +1,4 @@
-import { animate } from "./helpers";
+import { animate1 } from "./helpers";
 
 const modal = () => {
   const buttons = document.querySelectorAll(".popup-btn");
@@ -9,14 +9,14 @@ const modal = () => {
     btn.addEventListener("click", () => {
       modal.style.display = "block";
       if (window.innerWidth >= 768) {
-        animate().fadeIn(modal);
+        animate1().fadeIn(modal);
       }
     });
   });
 
   closeBtn.addEventListener("click", () => {
     if (window.innerWidth >= 768) {
-      animate().fadeOut(modal);
+      animate1().fadeOut(modal);
     } else {
       modal.style.display = "none";
     }

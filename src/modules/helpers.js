@@ -26,6 +26,7 @@ const animate1 = () => {
   };
   return { fadeIn, fadeOut }; // Возвращаем объект с функциями fadeIn и fadeOut
 };
+
 const animate = (options) => {
   const { duration, timing, draw } = options;
   const start = performance.now();
