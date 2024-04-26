@@ -1,33 +1,30 @@
-const animate1 = () => {
-  const fadeIn = (element) => {
-    let opacity = 0;
-    const fadeInAnimation = () => {
-      opacity += 0.05;
-      element.style.opacity = opacity;
-      if (opacity < 1) {
-        requestAnimationFrame(fadeInAnimation);
-      }
-    };
-    requestAnimationFrame(fadeInAnimation);
+export const fadeIn = (element) => {
+  let opacity = 0;
+  const fadeInAnimation = () => {
+    opacity += 0.05;
+    element.style.opacity = opacity;
+    if (opacity < 1) {
+      requestAnimationFrame(fadeInAnimation);
+    }
   };
-
-  const fadeOut = (element) => {
-    let opacity = 1;
-    const fadeOutAnimation = () => {
-      opacity -= 0.05;
-      element.style.opacity = opacity;
-      if (opacity > 0) {
-        requestAnimationFrame(fadeOutAnimation);
-      } else {
-        element.style.display = "none";
-      }
-    };
-    requestAnimationFrame(fadeOutAnimation);
-  };
-  return { fadeIn, fadeOut }; // Возвращаем объект с функциями fadeIn и fadeOut
+  requestAnimationFrame(fadeInAnimation);
 };
 
-const animate = (options) => {
+export const fadeOut = (element) => {
+  let opacity = 1;
+  const fadeOutAnimation = () => {
+    opacity -= 0.05;
+    element.style.opacity = opacity;
+    if (opacity > 0) {
+      requestAnimationFrame(fadeOutAnimation);
+    } else {
+      element.style.display = "none";
+    }
+  };
+  requestAnimationFrame(fadeOutAnimation);
+};
+
+export const animate = (options) => {
   const { duration, timing, draw } = options;
   const start = performance.now();
 
@@ -46,5 +43,3 @@ const animate = (options) => {
 
   requestAnimationFrame(animateFrame);
 };
-
-export { animate1, animate };
