@@ -1,27 +1,26 @@
-export const fadeIn = (element) => {
-  let opacity = 0;
-  const fadeInAnimation = () => {
-    opacity += 0.05;
-    element.style.opacity = opacity;
-    if (opacity < 1) {
-      requestAnimationFrame(fadeInAnimation);
-    }
-  };
-  requestAnimationFrame(fadeInAnimation);
+export const fadeIn = (element, duration = 500) => {
+  const startOpacity = getComputedStyle(element).opacity || 0;
+  animate({
+    duration,
+    timing: (timeFraction) => timeFraction,
+    draw: (progress) => {
+      element.style.opacity = startOpacity + progress * (1 - startOpacity);
+    },
+  });
 };
 
-export const fadeOut = (element) => {
-  let opacity = 1;
-  const fadeOutAnimation = () => {
-    opacity -= 0.05;
-    element.style.opacity = opacity;
-    if (opacity > 0) {
-      requestAnimationFrame(fadeOutAnimation);
-    } else {
+export const fadeOut = (element, duration = 500) => {
+  const startOpacity = getComputedStyle(element).opacity || 1;
+  animate({
+    duration,
+    timing: (timeFraction) => timeFraction,
+    draw: (progress) => {
+      element.style.opacity = startOpacity - progress * startOpacity;
+    },
+    onComplete: () => {
       element.style.display = "none";
-    }
-  };
-  requestAnimationFrame(fadeOutAnimation);
+    },
+  });
 };
 
 export const animate = (options) => {
