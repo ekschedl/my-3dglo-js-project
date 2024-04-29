@@ -90,8 +90,10 @@ const sendForm = ({ formId, someElem = [] }) => {
 
     preloader.style.display = "block"; // Показываем прелоадер перед отправкой формы
     form.append(preloader); // Добавляем прелоадер в начало формы
-    statusBlock.textContent = loadText;
-    form.append(statusBlock);
+
+    // Заменяем текстовое оповещение на прелоадер картинку
+    statusBlock.textContent = ""; // Убираем текстовое содержимое statusBlock
+    form.append(preloader);
 
     formData.forEach((val, key) => {
       formBody[key] = val;
