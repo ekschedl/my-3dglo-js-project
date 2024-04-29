@@ -17,5 +17,33 @@ form();
 tabs();
 slider();
 swiper();
-sendForm("form1");
+sendForm({
+  formId: "form1", // Идентификатор первой формы
+  someElem: [
+    {
+      type: "block",
+      id: "total",
+    },
+  ],
+});
+
+sendForm({
+  formId: "form2", // Идентификатор второй формы
+  someElem: [
+    {
+      type: "block",
+      id: "total",
+    },
+  ],
+});
+
+sendForm({
+  formId: "form3", // Идентификатор третьей формы
+  someElem: [
+    {
+      type: "block",
+      id: "total",
+    },
+  ],
+});
 // nothing();
