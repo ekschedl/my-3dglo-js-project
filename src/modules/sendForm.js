@@ -77,6 +77,19 @@ const sendForm = ({ formId, someElem = [] }) => {
     const formData = new FormData(form);
     const formBody = {};
 
+    const preloader = document.createElement("div"); // Создаем элемент прелоадера
+    preloader.className = "preloader"; // Добавляем класс для прелоадера
+
+    // Устанавливаем стили для центрирования и белых точек
+    preloader.style.display = "none";
+    preloader.style.width = "30px";
+    preloader.style.height = "30px";
+    preloader.style.borderRadius = "50%";
+    preloader.style.border = "5px solid rgb(255, 255, 255)";
+    preloader.style.margin = "10px auto";
+
+    preloader.style.display = "block"; // Показываем прелоадер перед отправкой формы
+    form.append(preloader); // Добавляем прелоадер в начало формы
     statusBlock.textContent = loadText;
     form.append(statusBlock);
 
@@ -96,15 +109,21 @@ const sendForm = ({ formId, someElem = [] }) => {
     if (validate(formElements)) {
       sendData(formBody)
         .then((data) => {
+          preloader.style.display = "none"; // Скрываем прелоадер после завершения отправки формы
+
           statusBlock.textContent = successText;
           formElements.forEach((input) => {
             input.value = "";
           });
         })
         .catch((error) => {
+          preloader.style.display = "none"; // Скрываем прелоадер в случае ошибки
+
           statusBlock.textContent = errorText;
         });
     } else {
+      preloader.style.display = "none"; // Скрываем прелоадер если данные не валидны
+
       alert("Данные не валидны");
     }
   };
