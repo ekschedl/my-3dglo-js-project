@@ -80,7 +80,7 @@ const sendForm = ({ formId, someElem = [] }) => {
     const preloader = document.createElement("div"); // Создаем элемент прелоадера
     preloader.className = "preloader"; // Добавляем класс для прелоадера
 
-    // Устанавливаем стили для центрирования и белых точек
+    // Устанавливаем стили
     preloader.style.display = "none";
     preloader.style.width = "30px";
     preloader.style.height = "30px";
