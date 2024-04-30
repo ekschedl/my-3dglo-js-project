@@ -16,6 +16,7 @@ const sendForm = ({ formId, someElem = [] }) => {
   const checkPhone = (input) => {
     return /^[0-9()+\-]*$/.test(input);
   };
+
   const checkCyrillicSpacePunctuation = (input) => {
     return /^[\u0400-\u04FF\d\s.,!?'"()]*$/i.test(input);
   };
@@ -75,9 +76,18 @@ const sendForm = ({ formId, someElem = [] }) => {
     const formData = new FormData(form);
     const formBody = {};
 
-    statusBlock.textContent = loadText;
-    statusBlock.style.margin = "10px";
-    form.append(statusBlock);
+    const spinnerBlock = document.createElement("div");
+    spinnerBlock.style.width = "30px";
+    spinnerBlock.style.height = "30px";
+    spinnerBlock.style.border = "4px solid #ffffff";
+    spinnerBlock.style.borderRadius = "50%";
+    spinnerBlock.style.position = "absolute";
+    spinnerBlock.style.bottom = "20px";
+    spinnerBlock.style.left = "50%";
+    spinnerBlock.style.transform = "translateX(-50%)";
+
+    statusBlock.innerHTML = "";
+    statusBlock.appendChild(spinnerBlock);
 
     formData.forEach((val, key) => {
       formBody[key] = val;
@@ -99,12 +109,21 @@ const sendForm = ({ formId, someElem = [] }) => {
           formElements.forEach((input) => {
             input.value = "";
           });
+          setTimeout(() => {
+            statusBlock.innerHTML = "";
+          }, 3000);
         })
         .catch((error) => {
           statusBlock.textContent = errorText;
+          setTimeout(() => {
+            statusBlock.innerHTML = "";
+          }, 3000);
         });
     } else {
       alert("Данные не валидны");
+      setTimeout(() => {
+        statusBlock.innerHTML = "";
+      }, 3000);
     }
   };
 
@@ -119,6 +138,8 @@ const sendForm = ({ formId, someElem = [] }) => {
   } catch (error) {
     console.log(error.message);
   }
+
+  form.appendChild(statusBlock);
 };
 
 export default sendForm;
