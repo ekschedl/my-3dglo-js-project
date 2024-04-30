@@ -1,5 +1,3 @@
-"use strict";
-
 import { animate } from "./helpers";
 
 const calc = (price = 100) => {
@@ -17,7 +15,7 @@ const calc = (price = 100) => {
       target.classList.contains("calc-count") ||
       target.classList.contains("calc-day")
     ) {
-      target.value = target.value.replace(/\D+/g, ""); // Заменяем все нецифровые символы
+      target.value = target.value.replace(/\D+/g, "");
     }
   });
 
@@ -45,13 +43,12 @@ const calc = (price = 100) => {
     }
 
     animate({
-      // Вызываем функцию animate для анимации изменения total
-      duration: 500, // Продолжительность анимации в миллисекундах
+      duration: 500,
       timing(timeFraction) {
-        return timeFraction; // Линейная функция изменения состояния анимации
+        return timeFraction;
       },
       draw(progress) {
-        total.textContent = (totalValue * progress).toFixed(2); // Обновляем значение total на каждом шаге анимации
+        total.textContent = (totalValue * progress).toFixed(2);
       },
     });
   };

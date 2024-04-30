@@ -1,5 +1,5 @@
 export const fadeIn = (element, duration = 500) => {
-  const startOpacity = getComputedStyle(element).opacity || 0;
+  const startOpacity = 0;
   animate({
     duration,
     timing: (timeFraction) => timeFraction,
@@ -10,7 +10,7 @@ export const fadeIn = (element, duration = 500) => {
 };
 
 export const fadeOut = (element, duration = 500) => {
-  const startOpacity = getComputedStyle(element).opacity || 1;
+  const startOpacity = 1;
   animate({
     duration,
     timing: (timeFraction) => timeFraction,

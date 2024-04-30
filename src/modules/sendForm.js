@@ -1,5 +1,3 @@
-"use strict";
-
 const sendForm = ({ formId, someElem = [] }) => {
   const form = document.getElementById(formId);
   const statusBlock = document.createElement("div");
@@ -77,22 +75,18 @@ const sendForm = ({ formId, someElem = [] }) => {
     const formData = new FormData(form);
     const formBody = {};
 
-    const preloader = document.createElement("div"); // Создаем элемент прелоадера
-    preloader.className = "preloader"; // Добавляем класс для прелоадера
-
-    // Устанавливаем стили
+    const preloader = document.createElement("div");
+    preloader.className = "preloader";
     preloader.style.display = "none";
     preloader.style.width = "30px";
     preloader.style.height = "30px";
     preloader.style.borderRadius = "50%";
     preloader.style.border = "5px solid rgb(255, 255, 255)";
     preloader.style.margin = "10px auto";
+    preloader.style.display = "block";
+    form.append(preloader);
 
-    preloader.style.display = "block"; // Показываем прелоадер перед отправкой формы
-    form.append(preloader); // Добавляем прелоадер в начало формы
-
-    // Заменяем текстовое оповещение на прелоадер картинку
-    statusBlock.textContent = ""; // Убираем текстовое содержимое statusBlock
+    statusBlock.textContent = "";
     form.append(preloader);
 
     formData.forEach((val, key) => {
@@ -111,21 +105,18 @@ const sendForm = ({ formId, someElem = [] }) => {
     if (validate(formElements)) {
       sendData(formBody)
         .then((data) => {
-          preloader.style.display = "none"; // Скрываем прелоадер после завершения отправки формы
-
+          preloader.style.display = "none";
           statusBlock.textContent = successText;
           formElements.forEach((input) => {
             input.value = "";
           });
         })
         .catch((error) => {
-          preloader.style.display = "none"; // Скрываем прелоадер в случае ошибки
-
+          preloader.style.display = "none";
           statusBlock.textContent = errorText;
         });
     } else {
-      preloader.style.display = "none"; // Скрываем прелоадер если данные не валидны
-
+      preloader.style.display = "none";
       alert("Данные не валидны");
     }
   };

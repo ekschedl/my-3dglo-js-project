@@ -1,4 +1,3 @@
-"use strict";
 const slider = () => {
   const sliderBlock = document.querySelector(".portfolio-content");
   const slides = document.querySelectorAll(".portfolio-item");
@@ -7,23 +6,22 @@ const slider = () => {
   let currentSlide = 0;
   let interval;
 
-  // Функция для создания точек и добавления класса активности первой точке
   const createDots = () => {
     slides.forEach((slide, index) => {
       const dot = document.createElement("li");
       dot.classList.add("dot");
       dotsContainer.appendChild(dot);
       if (index === 0) {
-        dot.classList.add("dot-active"); // Добавляем класс активности первой точке
+        dot.classList.add("dot-active");
       }
     });
   };
 
-  createDots(); // Вызываем функцию для создания точек
+  createDots();
 
-  sliderBlock.appendChild(dotsContainer); // Добавляем контейнер с точками в блок слайдера
+  sliderBlock.appendChild(dotsContainer);
 
-  const dots = document.querySelectorAll(".dot"); // Обновляем список точек
+  const dots = document.querySelectorAll(".dot");
 
   const prevSlide = (elems, index, strClass) => {
     elems[index].classList.remove(strClass);
@@ -53,7 +51,7 @@ const slider = () => {
     }
 
     nextSlide(slides, currentSlide, "portfolio-item-active");
-    activateDot(currentSlide); // Активируем соответствующую точку
+    activateDot(currentSlide);
   };
 
   const startSlide = () => {

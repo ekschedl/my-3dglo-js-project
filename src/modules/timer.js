@@ -13,7 +13,6 @@ const timer = (deadline) => {
     const minutes = Math.floor((timeRemaining % 3600) / 60);
     const seconds = Math.floor(timeRemaining % 60);
 
-    // Добавляем нули перед однозначными значениями
     const formattedHours = String(hours).padStart(2, "0");
     const formattedMinutes = String(minutes).padStart(2, "0");
     const formattedSeconds = String(seconds).padStart(2, "0");
@@ -26,15 +25,13 @@ const timer = (deadline) => {
     };
   };
 
-  let getTime = getTimerRemaining(); // Получаем время до начала работы интервала
+  let getTime = getTimerRemaining();
 
   if (getTime.timeRemaining <= 0) {
-    // Если время уже прошло, устанавливаем таймер на 00:00:00
     timerHours.textContent = "00";
     timerMinutes.textContent = "00";
     timerSeconds.textContent = "00";
   } else {
-    // Иначе, если время еще не прошло, запускаем интервал
     const updateClock = () => {
       getTime = getTimerRemaining();
       timerHours.textContent = getTime.formattedHours;
@@ -42,19 +39,19 @@ const timer = (deadline) => {
       timerSeconds.textContent = getTime.formattedSeconds;
     };
 
-    updateClock(); // Вызываем один раз для обновления времени перед запуском setInterval
+    updateClock();
 
     let timerInterval = setInterval(() => {
       getTime = getTimerRemaining();
       if (getTime.timeRemaining <= 0) {
-        clearInterval(timerInterval); // Остановить интервал, если время истекло
+        clearInterval(timerInterval);
         timerHours.textContent = "00";
         timerMinutes.textContent = "00";
         timerSeconds.textContent = "00";
       } else {
-        updateClock(); // Обновить время
+        updateClock();
       }
-    }, 1000); // Вызываем каждую секунду
+    }, 1000);
   }
 };
 
