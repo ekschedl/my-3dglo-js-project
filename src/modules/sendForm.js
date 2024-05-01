@@ -85,9 +85,12 @@ const sendForm = ({ formId, someElem = [] }) => {
     spinnerBlock.style.bottom = "20px";
     spinnerBlock.style.left = "50%";
     spinnerBlock.style.transform = "translateX(-50%)";
+    spinnerBlock.style.margin = "0px auto";
 
     statusBlock.innerHTML = "";
     statusBlock.appendChild(spinnerBlock);
+    statusBlock.style.color = "lightblue";
+    statusBlock.style.margin = "10px auto";
 
     formData.forEach((val, key) => {
       formBody[key] = val;
