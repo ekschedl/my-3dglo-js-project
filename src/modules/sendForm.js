@@ -81,16 +81,15 @@ const sendForm = ({ formId, someElem = [] }) => {
     spinnerBlock.style.height = "30px";
     spinnerBlock.style.border = "4px solid #ffffff";
     spinnerBlock.style.borderRadius = "50%";
-    spinnerBlock.style.position = "absolute";
-    spinnerBlock.style.bottom = "20px";
+    spinnerBlock.style.position = "relative";
+
     spinnerBlock.style.left = "50%";
     spinnerBlock.style.transform = "translateX(-50%)";
-    spinnerBlock.style.margin = "0px auto";
 
     statusBlock.innerHTML = "";
     statusBlock.appendChild(spinnerBlock);
     statusBlock.style.color = "lightblue";
-    statusBlock.style.margin = "10px auto";
+    statusBlock.style.margin = "20px auto";
 
     formData.forEach((val, key) => {
       formBody[key] = val;
